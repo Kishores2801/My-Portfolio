@@ -1,0 +1,84 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<style>
+
+
+    .control{
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--color-grey-4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .7rem 0;
+        box-shadow: var(--box-shadow-1);}
+
+    .contain{
+        padding:20px;
+        border:1px;
+    }
+    .mb-3{
+        flex-direction: column;
+        display: flex;
+        padding-right: 9rem;
+       
+    }
+
+    .form-label{
+        display: flex;
+        gap: 20px;
+    }
+
+    .btn btn-primary{
+
+        justify-content: center;
+
+        display: flex;
+
+    }
+
+
+    
+</style>  
+
+
+<div class="control" data-id="home" >
+    <a href= "{% url 'home' %}"><i class="fas fa-home"></i></a>
+</div>
+
+
+<div class= "contain">
+    <h3> Project form</h3>
+    
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {{form.media}}
+        {{ myform.as_p }}
+        
+
+        {% for field in form %}
+        {{form.Text_areas_name}}
+
+        <div class="mb-3">
+           <label for ="exampleInputPassword1" class=form-label>{{field.label}}: </label>
+           {{field}}
+        </div>
+
+
+
+        {% endfor %}
+
+        <input class="btn btn-primary" type="submit" value="submit">
+</div>
+
+
+{% endblock content %}

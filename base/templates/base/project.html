@@ -1,0 +1,76 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+<style>
+
+    .control{
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--color-grey-4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .7rem 0;
+        box-shadow: var(--box-shadow-1);
+    }
+    .project--conainter{
+        padding:40px;
+        border:1px;
+    }
+    
+    .project--image{
+        size: 500%;
+        align:center;
+        display: flex;
+    }
+    h1{
+        color: var(--color-secondary)
+    }
+
+    p{
+        display: flex;
+    }
+
+</style>
+
+
+
+    <div class="control" data-id="home" >
+        <a href= "{% url 'home' %}"><i class="fas fa-home"></i></a>
+    </div>
+
+    <br><br>
+    <div class="project--conainter">
+
+        <a class= "btn btn-warning" href="{% url 'edit-project' project.id %}">Edit</a>
+        <br><br>
+        <img class="project--image"  src="{{project.thumbnail.url}}" alt="{{project.title}}">
+        <br><br>
+        
+
+
+        <center><h1>{{project.title}}</h1></center>
+        
+        
+
+        <hr>
+        <br><br>
+        <p class="project--body">{{ project.body|safe }}</p>
+    </div>
+
+ 
+
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+    <script src="{% static "app.js" %}"></script>
+
+
+{% endblock content %} 

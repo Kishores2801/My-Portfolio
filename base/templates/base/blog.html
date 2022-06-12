@@ -1,0 +1,62 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+
+    .control{
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--color-grey-4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .7rem 0;
+        box-shadow: var(--box-shadow-1);
+    }
+    .blog--conainter{
+        padding:40px;
+        border:1px;
+    }
+    
+    .blog--image{
+        size: 500%;
+        align:center;
+        display: flex;
+    }
+    h1{
+        color: var(--color-secondary)
+        display: flex;
+    }
+
+    p{
+        display: flex;
+    }
+
+</style>
+
+
+
+<div class="control" data-id="home" >
+    <a href= "{% url 'home' %}"><i class="fas fa-home"></i></a>
+</div>
+
+<br><br>
+
+<div class="blog--conainter">
+    <a class= "btn btn-warning" href="{% url 'edit-blog' blog.id %}">Edit</a>
+    <img class="blog--image" src="{{blog.thumbnail.url}}" >
+
+    <h1>{{blog.title}}</h1>
+    
+
+    <hr>
+    <br>
+    <p>{{blog.body| safe}}</p>
+
+</div>
+{% endblock content %}
