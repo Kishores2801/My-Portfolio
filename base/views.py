@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Project, Blog
+from .models import Project, Blog, Message
 from .forms import  ProjectForm, BlogForm
    
 
@@ -94,3 +94,9 @@ def editBlog(request, pk):
     context = {'Bform': Bform}
     return render(request, 'base/blog_form.html', context)
 
+
+
+def inboxPage(request):
+    inbox=Message.objects.all().order_by("is_read")
+    context = {"inbox":inbox}
+    return render(request, 'base/inbox.html', context)

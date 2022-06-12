@@ -185,7 +185,10 @@
                     </div>
         </section>
         <section class="container" id="portfolio">
-            <i class="fa-solid fa-plus"><a class="nav-link" href="{% url 'add-project' %}">ADD Project</a></i>
+
+            {% if request.user.is_authenticated  %}
+                <i class="fa-solid fa-plus"><a class="nav-link" href="{% url 'add-project' %}">ADD Project</a></i>
+            {% endif %}
             <div class="main-title">
                 <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
             </div>
@@ -213,7 +216,7 @@
                         </div>
                     </div>
                 {% empty %}
-                    <h3> There are no projects in the database to show. </h3>
+                    <h3> There are no projects to show. </h3>
                 {% endfor %}
                    
 
@@ -226,11 +229,13 @@
         </section>
         <section class="container" id="blogs">
             <div class="blogs-content">
+                {% if request.user.is_authenticated  %}
+                    <i class="fa-solid fa-plus"><a class="nav-link" href="{% url 'add-blog' %}">ADD Blog</a></i>
+                {% endif %}
                 <div class="main-title">
                     <h2>My <span>Blogs</span><span class="bg-text">My Blogs</span></h2>
                 </div>
-
-                <i class="fa-solid fa-plus"><a class="nav-link" href="{% url 'add-blog' %}">ADD Blog</a></i>
+                
                 <div class="blogs">
                     {% for blog in blogs %}
                         <div class="blog">
@@ -245,7 +250,7 @@
 
                         </div>
                     {% empty %}
-                        <h3> There are no BLOGS in the database to show. </h3>
+                        <h3> There are no blogs to show. </h3>
                     {% endfor %}
                     
                 </div>
@@ -256,6 +261,10 @@
                 <div class="main-title">
                     <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
                 </div>
+                {% if request.user.is_authenticated  %}
+                    <i class="fa-solid fa-envelope"> <a class="nav-link" href="{% url 'inbox' %}"> Inbox</a></i>
+                    
+                {% endif %}
                 <div class="contact-content-con">
                     <div class="left-contact">
                         <h4>Contact me here</h4>
@@ -287,7 +296,7 @@
                                     <span>Education</span>
                                 </div>
                                 <p>
-                                    <span>: Sri Lanka Institute of Information Technology </span>
+                                <span>: SLIIT Malabe Campus</span>
                                 </p>
                             </div>
                             <div class="contact-item">

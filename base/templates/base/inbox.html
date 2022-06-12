@@ -1,0 +1,98 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .control{
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--color-grey-4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .7rem 0;
+        box-shadow: var(--box-shadow-1);
+        .active-btn {
+            background-color: var(--color-secondary);
+            transition: all .4s ease-in-out;
+            i { color: var(--color-white); }
+        }
+  
+    
+    
+    }
+
+        
+    .contain{
+        padding:20px;
+        border:1px;
+    }
+    table {
+        border: 1px solid;
+        width: 100%;
+      }
+    .Head{
+        background-color:var(--color-secondary)
+    }
+
+      th, td {
+        padding: 15px;
+        border: 1px solid;
+        text-align: left;
+      }
+</style>
+
+
+<div class="control" data-id="home" >
+    <a href= "{% url 'home' %}"><i class="fas fa-home"></i></a>
+</div>
+
+
+<h3>My Messages</h3>
+<br>
+<br>
+
+<div class= "contain">
+    <table class="table">
+        <thead class= "Head">
+            <tr>
+                <th>Sender</th>
+                <th>Subject</th> 
+                <th>Date sent</th>
+              
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for message in inbox %}
+            {% if message.is_read %}
+
+            <tr>
+            {% else %}
+            <tr style= "font-weight:990; colour: red;">
+            {% endif %}
+                <td>{{message.name}}</td>
+                <td>{{message.subject}}</td>
+                <td>{{message.created}}</td>
+               
+            </tr>
+
+
+            {% endfor %}
+        </tbody> 
+
+
+    </table>
+</div>
+
+<div class="theme-btn">
+    <i class="fas fa-adjust"></i>
+</div>
+
+<script src="{% static "app.js" %}"></script>
+
+{% endblock content %}

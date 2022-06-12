@@ -10,6 +10,7 @@ urlpatterns = [
     path('add-blog/', views.addBlog , name='add-blog'),
     path('edit-project/<str:pk>/', views.editProject , name='edit-project'),
     path('edit-blog/<str:pk>/', views.editBlog , name='edit-blog'),
+    path('inbox/', views.inboxPage, name='inbox'),
     
 ]
 
