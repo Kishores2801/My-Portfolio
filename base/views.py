@@ -1,16 +1,25 @@
 from django.shortcuts import render, redirect
 from .models import Project, Blog, Message
-from .forms import  ProjectForm, BlogForm
+from .forms import  MessageForm, ProjectForm, BlogForm
+
+from django.contrib import messages
    
 
-
-# Create your views here.
 
 
 def homepage(request):
     projects=Project.objects.all()
     blogs = Blog.objects.all()
-    context={'projects': projects, "blogs":blogs,}
+    form = MessageForm()
+
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'your Message is sucessfully sent')
+    context={'projects': projects, "blogs":blogs, 'form':form}
     return render(request, "base/index.html",context)
     
 
@@ -98,5 +107,15 @@ def editBlog(request, pk):
 
 def inboxPage(request):
     inbox=Message.objects.all().order_by("is_read")
-    context = {"inbox":inbox}
+    unreadCount =Message.objects.all().filter(is_read=False).count()
+    context = {"inbox":inbox , 'unreadCount':unreadCount}
     return render(request, 'base/inbox.html', context)
+
+    
+def messagePage(request, pk):
+    message=Message.objects.get(id=pk)
+    context = {"message":message}
+    message.is_read=True
+    message.save()
+    return render(request, 'base/messages.html', context)
+

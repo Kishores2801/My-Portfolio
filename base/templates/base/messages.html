@@ -1,0 +1,60 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    .control{
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--color-grey-4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .7rem 0;
+        box-shadow: var(--box-shadow-1);
+        .active-btn {
+            background-color: var(--color-secondary);
+            transition: all .4s ease-in-out;
+            i { color: var(--color-white); }
+        }
+  
+    
+    
+    }
+
+        
+    .Contain{
+        padding:40px;
+        border:1px;}
+</style>
+
+
+<div class="control" data-id="home" >
+    <a href= "{% url 'home' %}"><i class="fas fa-home"></i></a>
+</div>
+
+
+<div class="Contain">
+
+    <p>Sender: {{message.name}}</p>
+    <p>Email: {{message.email}}</p>
+    <hr>
+    <p>{{message.subject}}</p>
+
+    
+
+    <hr>
+    <p>{{message.body}}</p>
+    <br><br>
+</div>
+
+
+
+
+
+
+{% endblock content %}
