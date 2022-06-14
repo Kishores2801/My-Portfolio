@@ -113,31 +113,13 @@
             <h3>Other Skills</h3>
                     <br>
                     <div class="others--skills--wrapper">
-                        <div class="skill--tag">
-                            <span>Data Cleaning</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>Data Analysis</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>Data Visualization</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>Data Story Telling</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>Django</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>HTML/CSS</span>
-                        </div>
-                        <div class="skill--tag">
-                            <span>Project Management</span>
-                        </div>
-    
-                        <div class="skill--tag">
-                            <span>Microsoft office</span>
-                        </div>      
+                        {% for tag in tags %}
+                            <div class="skill--tag">
+                                <span>Data Cleaning</span>
+                            </div>
+                        {% empty %}
+                            <h3> There are no other skills to show. </h3>
+                        {% endfor %}      
                 </div>
 <br><br>
 <br><br>
