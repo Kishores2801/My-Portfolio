@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Project, Blog, Message
+from .models import Project, Blog, Message, Tag
 from .forms import  MessageForm, ProjectForm, BlogForm
 
 from django.contrib import messages
@@ -10,6 +10,7 @@ from django.contrib import messages
 def homepage(request):
     projects=Project.objects.all()
     blogs = Blog.objects.all()
+    tags = Tag.objects.all()
     form = MessageForm()
 
 
@@ -19,7 +20,7 @@ def homepage(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'your Message is sucessfully sent')
-    context={'projects': projects, "blogs":blogs, 'form':form}
+    context={'projects': projects, "blogs":blogs, 'form':form, 'tags': tags}
     return render(request, "base/index.html",context)
     
 
